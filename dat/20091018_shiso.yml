@@ -1,19 +1,23 @@
 ---
-- title: Sinatraその他
+- title: SinatraとHamlとmirakui_dmmなど
   body: |
     mirakui/成田一生
 - title: 今日のメニュー
   body: |
     * Sinatra
     * Haml
+    * ext: hitocoma
     * ext: mirakui_dmm
     * ext: haccho
 - title: Sinatraとは
   body: |
     * RubyのWebフレームワーク
     * すげーシンプル
+        Controller + View (Modelは無い)
     * Railsより超簡単
+        1ファイルで書ける
     * rack互換
+    * Passengerでデプロイできる
 - title: Sinatra Instration
   body: |
     * gem install sinatra
@@ -64,10 +68,14 @@
 - title: Sinatra+Hamlまとめ
   body: |
     Sinatra:
-      すごい簡単
-      PHPくらい簡単にWebを書ける
-      CRUD (Create/Read/Update/Delete) があるならRails使った方がいいかも
-
+      * すごい簡単
+      * PHPくらい簡単にRubyでWebを書ける
+      * CRUD (Create/Read/Update/Delete) があるならRails使った方がいいかも
+      * Controller を書き換えたらサーバ再起動が必要でめんどい
+        * Rails なら不要なのに…
+        * Shotgun を使えば再起動不要になるけど重い
+      * DBから情報引いて出力するだけのWebサービスのフロントエンド とかなら
+      　Sinatra はすごく気軽に使えて最高
     Haml:
       ヘブン状態!!!
 - title: 次の話
@@ -92,11 +100,23 @@
   body: |
     * 手オペ
         TLの雰囲気を見て俺がスクリプトを手動実行
-    * オープンソース
+    * もちろんオープンソース
         http://github.com/mirakui/monotonous
     * プラグインが追加可能
         実は mirakui_dmm は 汎用 Twitter Bot フレームワーク
         @mirakui_dmm は mirakui_dmm フレームワーク の dmm プラグイン
+        フバレコとかトハエコみたいにするつもりだった（飽きた）
     * アイコン
         うちの貯金箱
+- title: DMM の活用事例
+  body: |
+    DMMクローラ haccho
+    DEMO: URLは公開しないでね
+- title: おわりに
+  body: |
+    今日の発表資料および このプレゼンスクリプトも
+    もちろんオープンソースです。
+    http://github.com/mirakui/puresen
+
+    ご清聴ありがとうございました。
 
