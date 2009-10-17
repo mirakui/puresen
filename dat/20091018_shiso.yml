@@ -1,0 +1,102 @@
+---
+- title: Sinatraその他
+  body: |
+    mirakui/成田一生
+- title: 今日のメニュー
+  body: |
+    * Sinatra
+    * Haml
+    * ext: mirakui_dmm
+    * ext: haccho
+- title: Sinatraとは
+  body: |
+    * RubyのWebフレームワーク
+    * すげーシンプル
+    * Railsより超簡単
+    * rack互換
+- title: Sinatra Instration
+  body: |
+    * gem install sinatra
+- title: Sinatra DEMO
+  body: |
+    見れば分かるので DEMO します
+- title: Sinatra DEMO
+  body: |
+    簡単でしょ？
+- title: Sinatra 資料
+  body: |
+    http://labs.unoh.net/2009/05/sinatra.html
+- title: Haml
+  body: |
+    * HTMLをYAMLっぽく書けるテンプレート言語
+    * インデントで階層構造を表す
+      = 閉じタグを書かなくていい
+      = 革命
+    * Sinatraで使えます（railsでも）
+
+    資料
+    http://haml-lang.com/
+- title: Haml Instration
+  body: |
+    * gem install haml
+- title: Haml DEMO
+  body: |
+    見れば分かるので DEMO します
+- title: Haml のメリット
+  body: |
+    * 閉じタグが無い
+      * 閉じ忘れなし
+      * リファクタリングが楽
+    * 多幸感
+- title: Haml 資料
+  body: |
+    http://labs.unoh.net/2009/05/5haml.html
+- title: Sass というのもある
+  body: |
+    HTML -> Haml
+    CSS  -> Sass
+    
+    資料
+    http://sass-lang.com/
+- title: Sinatra+Hamlで作ってみた
+  body: |
+    DEMO: 一コマ画像検索 hitocoma
+- title: Sinatra+Hamlまとめ
+  body: |
+    Sinatra:
+      すごい簡単
+      PHPくらい簡単にWebを書ける
+      CRUD (Create/Read/Update/Delete) があるならRails使った方がいいかも
+
+    Haml:
+      ヘブン状態!!!
+- title: 次の話
+  body: |
+    してもいいですか？
+
+    * mirakui_dmm について
+- title: mirakui_dmm とは
+  body: |
+    http://twitter.com/mirakui_dmm
+
+    * mirakuiのDMM月額DVDレンタルのレンタル履歴をつぶやくBOT
+    * Ruby
+- title: mirakui_dmm の仕組み
+  body: |
+    1. 「○○を発送しました」メールがGMailに届く
+    2. IMAP で未読分を取りにいく
+    3. タイトルをdmm.co.jpの検索エンジンにかけて作品URLを取得
+    4. 作品URLをbit.lyのAPIで短縮
+    5. TwitterにPOST
+- title: mirakui_dmm のポイント
+  body: |
+    * 手オペ
+        TLの雰囲気を見て俺がスクリプトを手動実行
+    * オープンソース
+        http://github.com/mirakui/monotonous
+    * プラグインが追加可能
+        実は mirakui_dmm は 汎用 Twitter Bot フレームワーク
+        @mirakui_dmm は mirakui_dmm フレームワーク の dmm プラグイン
+    * アイコン
+        うちの貯金箱
+
