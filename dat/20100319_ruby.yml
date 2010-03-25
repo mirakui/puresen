@@ -1,0 +1,319 @@
+---
+- title: Ruby入門
+  body: |
+    mirakui/成田一生
+- title: 今日のメニュー
+  body: |
+    * Ruby基礎
+    * 便利なライブラリ
+        Rubygems
+        Mechanize
+        Rails
+        Sinatra
+    * github.com
+- title: Rubyとは
+  body: |
+    * LLプログラミング言語
+    * 作者：まつもとゆきひろ(matz)
+    * 日本発
+    * The Pragmatic Programmers という本で海外に認知
+    * Railsの登場でブレイク
+- title: 良い点
+  body: |
+    * 簡単
+    * ライブラリそこそこ充実(rubygems)
+    * Railsがある
+    * 日本語の資料多い
+    * CLI(irb)が使い易い
+- title: 悪い点
+  body: |
+    * 実行速度はあんま速くない
+    * 公式リファレンスいまいち
+- title: Ruby1.8.xと1.9.x
+  body: |
+    * 1.8系と1.9系で結構仕様が変化
+    * 1.9は「より良いRuby」
+      * 実行速度がかなり向上
+      * いろいろ良くなった
+    * 現在のstableは1.9.1
+    * 1.9.0リリースから2年以上経った今もなお移行期
+    * いまだに1.9で動かないライブラリもたまにある
+      （けど作者が悪いしメンテされてないってことなので
+      　そんなライブラリ使わない方がいい）
+    * これから始める人は1.9.1を使えば問題なし
+- title: Rubyの言語的な特徴
+  body: |
+    * 強い動的型付け
+    * あらゆるものがオブジェクト
+    * 独特なループ記法（イテレータ）
+- title: HelloWorld
+  body: |
+    puts 'Hello,World!'
+
+    ポイント
+    * セミコロンいらない
+    * 関数呼び出しのカッコは省略可能
+    * カッコを省略するとRubyっぽくなる
+- title: データ構造
+  body: |
+    変数
+      * 宣言は不要
+      * 接頭辞（$とか）不要
+
+      a = 100
+      b = 'Ruby'
+
+    配列
+      array = [100, 200, 300]
+
+    ハッシュ
+      * 順序ありハッシュ(ruby1.9から)
+      hash = {'banana'=>'yellow', 'apple'=>'red'}
+
+    シンボル
+      * 定数みたいなもの
+      * Stringより軽量
+      * Hashのkeyによく使われる
+      * 先頭にコロンをつければシンボル
+      hash = {:banana =>'yellow', :apple =>'red'}
+- title: クラス
+  body: |
+    class MyClass < ParentClass  # 継承
+
+      # コンストラクタ
+      def initialize(msg)
+        @msg = msg           # @msg はメンバ変数
+                             # メンバ変数は常にprivate
+      end
+
+      def say
+        puts @msg
+      end
+      
+      # setter
+      def msg=(msg)
+        @msg = msg
+      end
+
+      # getter
+      def msg(msg)
+        @msg                 # メソッドの戻り値は最後の式の結果
+      end
+
+      private
+      def private_method
+        # privateメソッド
+      end
+    end
+
+    a = MyClass.new('hello') # インスタンス作成、コンストラクタ呼び出し
+    a.say                    # => 'hello'
+- title: 制御構造
+  body: |
+    # if文
+    if a==1
+      ...
+    end
+
+    # case文
+    case animal
+    'dog':
+      ...
+    'cat':
+      ...
+    default:
+      ...
+    end
+
+    # while文
+    while (cond)
+      ...
+    end
+- title: Ruby特有のループ表現
+  body: |
+    # PHP
+    $animals = array('cat', 'dog', 'panda');
+    foreach ($animals as $animal) {
+      echo "$animal\n";
+    }
+
+    # Ruby
+    animals = ['cat', 'dog', 'panda']
+    animals.each do |animal|
+      puts animal
+    end
+
+- title: for文もあるけど使われてるの見たことない
+  body: |
+    # C/C++ では
+    for (int i=0; i<5; i++) {
+      printf("%d\n", i);
+    }
+
+    # Rubyのfor文（一般的なforeach風）
+    for i in [0,1,2,3,4]
+      puts i
+    end
+    # ↑でも使われてるの見たことない
+
+    # Rubyっぽいループ(Array#eachメソッド)
+    [0,1,2,3,4].each do |i|
+      puts i
+    end
+
+    # {}でもOK
+    (0..4).each {|i| puts i}
+    # ※「1..5」はRangeオブジェクト
+    # 複数行のときは do...end、 一行のときは {...} で書く人が多いかも
+    
+    # Short Coding !!
+    5.times {|i| p i}
+- title: ブロック
+  body: |
+    5.times {|i| p i}      # => 0,1,2,3,4
+            ~~~~~~~~~
+            ブロックと呼ぶ
+
+    block = proc {|i| p i} # ブロックをProcでくるむとオブジェクトとして持ち運べる
+    block.call('hello')    # => 'hello'
+                           # Procオブジェクトはメソッドとして機能する
+
+    5.times &block         # Procオブジェクトをブロックとして使う
+
+- title: （大体）すべてはオブジェクト
+  body: |
+    Rubyでは以下のものはみんなオブジェクト
+    （つまり何らかのクラスに属する）
+      * 文字列: String
+      * 数字: Fixnumなど
+      * 配列: Array
+      * ハッシュ: Hash
+      * シンボル: Symbol
+      * クラス: Class
+      * ブロック: Proc
+
+    なお、すべてのクラスはObjectの子クラス
+
+    クラスに属さないリテラルは無い
+
+    オブジェクトじゃないもの
+      * メソッド
+        => ブロックにすればオブジェクトとして持ち運べる
+- title: 既存のクラスに勝手にメソッドを追加できる
+  body: |
+    a = [0,1,2,3,4]
+
+    class Array
+      def my_each
+        for x in self
+          yield "#{x}だよー"
+        end
+      end
+    end
+
+    > a.each {|i| puts i}
+    0
+    1
+    2
+    3
+    4
+
+    > a.my_each {|i| puts i}
+    0だよー
+    1だよー
+    2だよー
+    3だよー
+    4だよー
+    
+- title: ダックタイピング
+  body: |
+    「もしもそれがアヒルのように歩き、
+      アヒルのように鳴くのなら、それはアヒルである」
+
+    継承関係がなくても、同じ振る舞いをするクラスは互換性があると見なされる    
+
+    class Duck
+      def sound
+        'quack'
+      end
+    end
+    
+    class Cat
+      def sound
+        'myaa'
+      end
+    end
+    
+    def test(foo)
+      puts foo.sound    # Duck Typing!
+    end
+    
+    test(Duck.new)
+    test(Cat.new)
+
+- title: Cとの親和性が高い
+  body: |
+    Rubyは実行速度がちょっと遅い
+    高速処理が欲しい場合は C/C++ で書いたものが楽勝で使える
+
+    他のLL言語の追随を許さない簡単さ
+
+    Ruby 拡張ライブラリ でぐぐれ
+- title: 基礎編
+  body: |
+    おわり
+- title: ライブラリ編
+  body: |
+    * Rubygems
+    * Mechanize
+    * Rails
+    * Sinatra
+- title: Rubygems
+  body: |
+    * Rubyのライブラリ管理システム
+
+    インストール
+      gem install <パッケージ名>
+
+    リスト
+      gem list
+
+    パッケージ探す
+      gem search <文字列> --remote
+- title: Mechanize
+  body: |
+    Webスクレイピングライブラリ
+    ネットつながればデモします
+- title: Rails
+  body: |
+    言わずと知れたWebアプリケーションフレームワーク
+
+    多くの後発フレームワークに影響を与えた
+
+    Rails以前のフレームワーク
+      * 設定ファイルいっぱい書かないといけない
+
+    Railsのすごいところ
+      * "設定より規約"
+      * 設定ファイルより命名規則で意味を表せばいい
+      * updated_at っていうカラムなら勝手に更新日時を入れてくれたりとか
+- title: Sinatra
+  body: |
+    軽量Webアプリケーションフレームワーク
+
+    Railsより簡単シンプルなので、ちょっとしたツールはこちらをどうぞ
+
+    [デモでごまかす]
+- title: github.com
+  body: |
+    git は 分散バージョン管理システムの一つ
+
+    git >> svn >> (越えられない壁) >> cvs
+
+    github.comは誰でも使えるgitのリポジトリ
+    すごく便利
+
+    rubygemsとも連携してる
+
+    rubyのライブラリの最新版はgithub.comにあることが多い
+
